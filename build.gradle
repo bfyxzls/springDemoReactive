@@ -1,0 +1,94 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		maven {
+			name "aliyun1"
+			url 'http://maven.aliyun.com/nexus/content/groups/public'
+		}
+		maven {
+			name "aliyun2"
+			url 'http://maven.aliyun.com/mvn/repository/'
+		}
+		maven {
+			name "pilipa's repo"
+			url "https://pilipa-assets.oss-cn-beijing.aliyuncs.com/repository/"
+		}
+		maven {
+			name "spring repo"
+			url "http://repo.spring.io/release"
+		}
+		maven {
+			name "spring milestone"
+			url "https://repo.spring.io/milestone/"
+		}
+		maven {
+			name "spring snapshot"
+			url "https://repo.spring.io/snapshot"
+		}
+
+		jcenter()
+		mavenCentral()
+		maven {
+			url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.lind'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenLocal()
+	maven {
+		name "aliyun1"
+		url 'http://maven.aliyun.com/nexus/content/groups/public'
+	}
+	maven {
+		name "aliyun2"
+		url 'http://maven.aliyun.com/mvn/repository/'
+	}
+	maven {
+		name "pilipa's repo"
+		url "https://pilipa-assets.oss-cn-beijing.aliyuncs.com/repository/"
+	}
+	maven {
+		name "spring repo"
+		url "http://repo.spring.io/release"
+	}
+	maven {
+		name "spring milestone"
+		url "https://repo.spring.io/milestone/"
+	}
+	maven {
+		name "spring snapshot"
+		url "https://repo.spring.io/snapshot"
+	}
+
+	jcenter()
+	mavenCentral()
+	maven {
+		url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+	}
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+	compile('org.springframework.boot:spring-boot-starter-webflux')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('io.projectreactor:reactor-test')
+	compileOnly('org.projectlombok:lombok')
+
+}
