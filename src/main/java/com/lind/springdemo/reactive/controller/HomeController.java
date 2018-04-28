@@ -1,7 +1,7 @@
-package com.lind.springDemoReactive.controller;
+package com.lind.springdemo.reactive.controller;
 
-import com.lind.springDemoReactive.model.Shop;
-import com.lind.springDemoReactive.repository.ShopRepository;
+import com.lind.springdemo.reactive.model.Shop;
+import com.lind.springdemo.reactive.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
@@ -22,13 +21,13 @@ import reactor.core.publisher.Mono;
 public class HomeController {
 
   /**
-   * 扩展ReactiveCrudRepository接口，提供基本的CRUD操作
+   * 扩展ReactiveCrudRepository接口，提供基本的CRUD操作.
    */
   @Autowired
   private ShopRepository shopRepository;
 
   /**
-   * spring-boot-starter-data-mongodb-reactive提供的通用模板
+   * spring-boot-starter-data-mongodb-reactive提供的通用模板.
    */
   @Autowired
   private ReactiveMongoTemplate reactiveMongoTemplate;
@@ -48,8 +47,14 @@ public class HomeController {
     return reactiveMongoTemplate.insert(restaurants);
   }
 
+  /**
+   * update.
+   * @param id 编号
+   * @param restaurants 实体
+   * @return
+   */
   @PatchMapping("/home/{id}")
-  public Mono<Shop>  update(@PathVariable String id, @RequestBody Shop restaurants) {
+  public Mono<Shop> update(@PathVariable String id, @RequestBody Shop restaurants) {
     Query query = new Query(Criteria.where("_id").is(id));
     Update update = Update.update("name", restaurants.getName());
 
